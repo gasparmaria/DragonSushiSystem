@@ -1,0 +1,72 @@
+﻿@model DragonSushiSystem.ViewModels.ViewModelCliente
+
+@{
+    ViewBag.Title = "Editar Cliente";
+}
+
+<section class="tela-cadastro-section cliente-cadastro">
+    <div class="container">
+        <div class="card-cadastro cliente">
+            <span class="txtCadastro">Editar cliente</span>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Cliente.ClienteID)
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Cliente.ClienteNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome completo" } })
+                    @Html.ValidationMessageFor(model => model.Cliente.ClienteNome, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Cliente.ClienteTelefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefone" } })
+                    @Html.ValidationMessageFor(model => model.Cliente.ClienteTelefone, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Endereco.Logradouro, new { htmlAttributes = new { @class = "form-control", @placeholder = "Logradouro" } })
+                    @Html.ValidationMessageFor(model => model.Endereco.Logradouro, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Cliente.ClienteNumeroEndereco, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número" } })
+                        @Html.ValidationMessageFor(model => model.Cliente.ClienteNumeroEndereco, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Cliente.ClienteComplemento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Complemento" } })
+                        @Html.ValidationMessageFor(model => model.Cliente.ClienteComplemento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Estado.UF, new { htmlAttributes = new { @class = "form-control", @placeholder = "UF" } })
+                        @Html.ValidationMessageFor(model => model.Estado.UF, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        <div class="div-input">
+                            @Html.EditorFor(model => model.Endereco.Cep, new { htmlAttributes = new { @class = "form-control", @placeholder = "CEP" } })
+                            @Html.ValidationMessageFor(model => model.Endereco.Cep, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Cidade.CidadeNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cidade" } })
+                    @Html.ValidationMessageFor(model => model.Cidade.CidadeNome, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Bairro.BairroNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Bairro" } })
+                    @Html.ValidationMessageFor(model => model.Bairro.BairroNome, "", new { @class = "text-danger" })
+                </div>
+                <input type="submit" value="Salvar" class="btnAzul">
+                <input type="submit" value="Descartar" class="btnVermelho" />
+            }
+        </div>
+        <img src="~/images/Mobile login-pana.svg">
+    </div>
+</section>

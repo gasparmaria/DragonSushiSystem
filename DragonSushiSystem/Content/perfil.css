@@ -1,0 +1,52 @@
+*{
+    font-family: 'Montserrat';
+}
+.perfil-section{
+    width: 100vw;
+    height: 100vh;
+    background: #F8F8F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.perfil{
+    width: 33%;
+    height: 75%;
+    background: #fff;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.perfil img{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+.perfil .perfil-nome{
+    color: #BD2525;
+    font-weight: 600;
+    padding: 25px;
+    font-size: 14pt;
+}
+.perfil .perfil-links .detalhes-item,
+.perfil .perfil-links .seguranca-item{
+    flex-direction: row;
+    display: flex;
+    width: 25vw;
+    border-bottom: 1px solid #777777;
+    padding: 10px;
+}
+.perfil .perfil-links .sair-item{
+    flex-direction: row;
+    display: flex;
+    width: 25vw;
+    padding: 10px;
+}
+.perfil .perfil-links p{
+    color: #777777;
+    padding: 10px;
+}

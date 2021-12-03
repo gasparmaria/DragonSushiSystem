@@ -1,0 +1,38 @@
+﻿@model DragonSushiSystem.Models.Prato
+
+@{
+    ViewBag.Title = "Cadastrar Prato";
+}
+
+<section class="tela-cadastro-section prato-cadastro">
+    <nav class="menu-vertical prato">
+        <a class="menu-vertical--links" href="#">Gerenciar estoque</a>
+        <a class="menu-vertical--links atual" href="#">Gerenciar pratos</a>
+    </nav>
+    <div class="container" id="prato">
+        <div class="card-cadastro prato">
+            <span class="txtCadastro">Cadastrar prato</span>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="input-class">
+                    @Html.EditorFor(model => model.PratoNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome" } })
+                    @Html.ValidationMessageFor(model => model.PratoNome, "", new { @class = "text-danger" })
+                </div>
+                <div class="input-class">
+                    @Html.EditorFor(model => model.PratoDescricao, new { htmlAttributes = new { @class = "form-control", @rows = "8", @placeholder = "Descrição" } })
+                    @Html.ValidationMessageFor(model => model.PratoDescricao, "", new { @class = "text-danger" })
+                </div>
+                <div class="div-dois-inputs">
+                    <input type="text" placeholder="R$" id="readonly-preco" readonly>
+                    @Html.EditorFor(model => model.PratoPreco, new { htmlAttributes = new { @class = "form-control", @id = "prato-preco", @placeholder = "Preço"} })
+                    @Html.ValidationMessageFor(model => model.PratoPreco, "", new { @class = "text-danger" })
+                </div>
+                <input type="submit" value="Cadastrar" class="btnVerde">
+            }
+        </div>
+        <img src="~/images/Cooking-bro.svg">
+    </div>
+</section>

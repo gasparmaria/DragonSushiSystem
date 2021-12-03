@@ -1,0 +1,19 @@
+.tela-lista-section .lista-table div.lista-index-table table{
+    width: 100%;
+    text-align: center;
+}
+.tela-lista-section .lista-table div.lista-index-table table th, td{
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+.tela-lista-section .lista-table div.lista-index-table table button{
+    width: 6vw;
+
+    border: 2px solid;
+    border-radius: 50px;
+
+    font-weight: 500;
+}
+.tela-lista-section .lista-table div.lista-index-table table button:hover{
+    transform: scale(1.09);
+}

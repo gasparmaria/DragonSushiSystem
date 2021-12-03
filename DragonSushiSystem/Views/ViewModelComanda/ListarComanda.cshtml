@@ -1,0 +1,136 @@
+﻿@model IEnumerable<DragonSushiSystem.ViewModels.ViewModelComanda>
+
+@{
+    ViewBag.Title = "Lista de Comandas Abertas";
+}
+
+<section class="comanda-index-section"> 
+    <div class="btn-add">
+        <div class="btn-add__linha"></div>
+    </div>
+
+    <div class="grid-comanda">
+
+        @foreach (var item in Model)
+        {
+            if (item.Comanda.ComandaID != 0)
+            {
+                <a href="@Url.Action("ComandaDetalhes", "ViewModelPedido", new { id = item.Comanda.ComandaID })">
+                    <div class="card-comanda">
+                        <div class="numero-comanda">
+                            @item.Comanda.ComandaID
+                        </div>
+                        <div class="identif-comanda">
+                            @if (item.Cliente.ClienteNome != null)
+                            {
+                                @item.Cliente.ClienteNome
+                            }
+                            @if (item.Mesa.MesaID != 0)
+                            {
+                                <p>Mesa @item.Mesa.MesaID</p>
+                            }
+                        </div>
+
+                    </div>
+                </a>
+            }
+        }
+
+            <div class="adicionar-comanda">
+                <h1>Nova Comanda</h1>
+                <div class="comanda-selecao-identificacao">
+                    <div class="dropdown-button">
+                        <label class="dropdown-button-label" for="dropdown-icon-mesa">
+                            <h3>Mesa</h3>
+                            <svg width="25" height="12" viewBox="0 0 40 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                                      fill="#BD2525" />
+                            </svg>
+                        </label>
+                        <input type="checkbox" id="dropdown-icon-mesa">
+                        </input>
+                    </div>
+                    <div class="add-comanda">
+                        <select class="input-class" name="sltComandaMesa">
+                            <option selected disabled>Mesa</option>
+                            @foreach (var item in Model)
+                            {
+                                foreach (var subitem in item.listaMesas)
+                                {
+                                    <option value="
+                                    @subitem.MesaID
+                                    ">
+                                        Mesa  @subitem.MesaID
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <a href="#">Gerenciar mesas</a>
+                        <button class="btnVerde" type="submit" name="btn-salvar-comanda-mesa">Salvar</button>
+                    </div>
+                </div>
+                <div class="comanda-selecao-identificacao">
+                    <div class="dropdown-button">
+                        <label class="dropdown-button-label" for="dropdown-icon-cliente">
+                            <h3>Cliente</h3>
+                            <svg width="25" height="12" viewBox="0 0 40 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                                      fill="#BD2525" />
+                            </svg>
+                        </label>
+                        <input type="checkbox" id="dropdown-icon-cliente">
+                        </input>
+                    </div>
+                    <div class="add-comanda">
+                        <select class="input-class" name="sltComandaCliente">
+                            <option selected disabled>Cliente</option>
+                            @foreach (var item in Model)
+                            {
+                                foreach (var subitem in item.listaClientes)
+                                {
+                                    <option value="
+                                    @subitem.ClienteID
+                                ">
+                                        @subitem.ClienteNome
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <a href="#">Gerenciar clientes</a>
+                        <button class="btnVerde" type="submit" name="btn-salvar-comanda-cliente">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+
+<!-- DROPDOWN - [Accordion] -->
+<script>
+        const accordion = document.querySelectorAll(`.comanda-selecao-identificacao`)
+        let svg = document.querySelectorAll(`.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label svg`)
+        let button = document.querySelectorAll(`.dropdown-button-label`)
+
+        for (let i = 0; i < accordion.length; i++) {
+            button[i].addEventListener(`click`, () => {
+                accordion[i].classList.toggle(`dropdown-ativo`)
+                svg[i].classList.toggle(`dropdown-ativo`)
+            })
+        }
+</script>
+
+<script>
+        const expandirCard = document.querySelector('.btn-add')
+        const novoCard = document.querySelector(`.adicionar-comanda`)
+        let novoCardAberto = false;
+
+        expandirCard.addEventListener(`click`, () => {
+            novoCard.classList.toggle('adicionar-comanda-aberto');
+            expandirCard.classList.toggle('btn-add-aberto');
+        })
+</script>

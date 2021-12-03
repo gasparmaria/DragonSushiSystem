@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "Comanda Detalhes";
+}
+
+<section class="comanda-detalhes-section">
+    <div class="pedido">
+        <div class="pedido-cabecalho">
+            <span class="txtPedido">Pedidos</span>
+            <div>
+                <button class="btnVerde" type="submit">Salvar</button>
+                <button class="btnVermelho" type="submit">Descartar</button>
+            </div>
+        </div>
+        <div class="pedido-table">
+            <table>
+                @foreach(var item in Model){
+                    <td>
+                        <div class="item-pedido">
+                            <div class="quantidade-pedido">
+                                <button class="btnDiminuirPedido" name="btnDiminuirPedido">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         aria-hidden="true" role="img" width="24" height="24"
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                        <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8z"
+                                              fill="#777" />
+                                    </svg>
+                                </button>
+                                <span class="txtQtdPedido">@item.PedidoQuantidade</span>
+                                <button class="btnAumentarPedido" name="btnAumentarPedido">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         aria-hidden="true" role="img" width="24" height="24"
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                        <g fill="none">
+                                            <path d="M12 8v4m0 0v4m0-4h4m-4 0H8" stroke="#777" stroke-width="2"
+                                                  stroke-linecap="round" />
+                                            <circle cx="12" cy="12" r="10" stroke="#777" stroke-width="2" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                            <span class="txtNomeItemPedido">
+                                @if(item.Produto.ProdutoNome == ""){
+                                @item.Prato.PratoNome
+                                    }
+                                @if(item.Prato.PratoNome == ""){
+                                @item.Produto.ProdutoNome
+                                    }
+                            </span>
+                            <span class="txtValorItemPedido">@item.Pedido.PedidoSubtotal</span>
+                            <div class="salvar-item-pedido">
+                                <button class="btnDescartarItemPedido">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         aria-hidden="true" role="img" width="24" height="24"
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                        <g fill="none">
+                                            <path d="M8 5l-5 5l5 5" stroke="#777" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M3 10h8c5.523 0 10 4.477 10 10v1" stroke="#777" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="btnExcluirItemPedido">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         aria-hidden="true" role="img" width="30" height="30"
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                        <path d="M16.192 6.344l-4.243 4.242l-4.242-4.242l-1.414 1.414L10.535 12l-4.242 4.242l1.414 1.414l4.242-4.242l4.243 4.242l1.414-1.414L13.364 12l4.242-4.242z"
+                                              fill="#777" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="adicionar-pedido">
+        <span class="txtAdicionarPedido">Adicionar ao pedido</span>
+        <form class="search-caixa" method="" action="">
+            <input class="search-input" type="search" name="search">
+            <button class="search-button__link" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     aria-hidden="true" role="img" width="20" height="20" preserveAspectRatio="xMidYMid meet"
+                     viewBox="0 0 24 24">
+                    <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6z"
+                          fill="#999" />
+                </svg>
+            </button>
+        </form>
+        <div class="adicionar-item-pedido">
+            <div class="pedido-table">
+                <table>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="item-pedido">
+                            <span class="txtNomeItemPedido">Nome</span>
+                            <span class="txtValorItemPedido">R$ 00,00</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 aria-hidden="true" role="img" width="20" height="20"
+                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path d="M4 12l6 6L20 6" stroke="#777" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="pedido-total">
+        <p class="total-comanda">Total: R$220,00</p>
+    </div>
+    <button class="btnAzul" type="submit">Pagamento</button>
+</section>
+
+<script>
+    var quantidade_pedido = document.getElementsByClassName(`txtQtdPedido`)
+    const btnAumentarPedido = document.getElementsByClassName(`btnAumentarPedido`)
+    const btnDiminuirPedido = document.getElementsByClassName(`btnDiminuirPedido`)
+
+    for (let i = 0; i < btnAumentarPedido.length; i++) {
+        btnAumentarPedido[i].addEventListener(`click`, () => {
+            const qtd_inicial = parseInt(quantidade_pedido[i].innerHTML)
+            var qtd = parseInt(quantidade_pedido[i].innerHTML)
+            quantidade_pedido[i].innerHTML = qtd += 1
+        });
+    }
+    for (let i = 0; i < btnDiminuirPedido.length; i++) {
+        btnDiminuirPedido[i].addEventListener(`click`, () => {
+            var qtd = parseInt(quantidade_pedido[i].innerHTML)
+            if(qtd > 1)
+            {
+                quantidade_pedido[i].innerHTML = qtd -= 1
+            }
+            else
+            {
+                quantidade_pedido[i].classList.toggle("tremidinha")
+            }
+        });
+    }
+</script>

@@ -1,0 +1,126 @@
+input, select, textarea{
+    height: auto;
+    padding: 10px;
+    background-color: #F8F8F8;
+    border: none;
+    border-radius: 10px;
+}
+input, select, textarea::placeholder{
+    color: #ccc;
+}
+input, select, textares:focus{
+    outline:none;
+    color: #000;
+}
+input#readonly-preco{
+    height: auto;
+    width:3vw;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+input#readonly-preco::placeholder{
+    color:#000;
+}
+.input-lista{
+    border-bottom: 1px solid #777;
+    border-radius: 0;
+    font-size: 10pt;
+    padding: 5px 2px;
+}
+.label-lista{
+    font-size: 10pt;
+    color: #777;
+    font-weight: 600;
+}
+.btnAzul {
+    width: 10vw;
+    padding: 8px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #149CFF;
+    color: #149CFF;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btnAzul:hover{
+    background:#149CFF;
+    color:#FFF;
+    border-color: #149CFF;
+}
+.btnVerde {
+    width: 12vw;
+    padding: 8px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #3A852E;
+    color: #3A852E;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btnVerde:hover{
+    background:#3A852E;
+    color:#FFF;
+    border-color: #3A852E;
+}
+.btnVermelho {
+    width: 12vw;
+    padding: 8px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #bd2525;
+    color: #bd2525;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btnVermelho:hover{
+    background:#bd2525;
+    color:#FFF;
+    border-color: #bd2525;
+}
+
+.btn-add{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 60px;
+    bottom: 60px;
+    background: #bd2525;
+    border-radius: 50%;
+    transform: translate(50%, 50%);
+    transition: 300ms ease;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.btn-add-aberto{
+    transform: translate(50%, 50%) rotate(135deg);
+}
+
+.btn-add__linha{
+    width: 30px;
+    height: 3px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.btn-add__linha:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    transform: rotate(90deg);
+    background-color: rgb(255, 255, 255);
+}

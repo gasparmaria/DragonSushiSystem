@@ -1,0 +1,30 @@
+/* não é um menu horizontal? */
+
+nav.menu-vertical{
+    position: relative;
+    height: 60px;
+    width: 100%;
+
+    padding: 0px 16px;
+
+    background-color: #fff;
+
+    display: flex;
+    align-items: center;
+    z-index: 9;
+}
+nav.menu-vertical .menu-vertical--links{
+    font-size: 11pt;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+
+    padding: 0px 16px;
+}
+nav.menu-vertical .menu-vertical--links:hover{
+    font-weight: 550;
+    transition: 500ms;
+}
+nav.menu-vertical .menu-vertical--links.atual{
+    color: #bd2525;
+}

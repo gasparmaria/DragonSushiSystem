@@ -1,0 +1,140 @@
+body {
+    height: 100vh;
+    background: #f8f8f8;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.tela-cadastro-section {
+    height: 100%;
+    margin-left: 60px;
+}
+
+.tela-cadastro-section .container {
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 32px 24px;
+}
+
+.tela-cadastro-section .container img {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 30vw;
+    top: 10vh;
+    transform: scale(1.2);
+}
+
+.tela-cadastro-section .container#cliente img {
+    position: absolute;
+    width: 100vw;
+    height: 70vh;
+    left: 32vw;
+    top: 35vh;
+    transform: scale(1.2);
+}
+
+.tela-cadastro-section .container#produto img,
+.tela-cadastro-section .container#prato img {
+    position: absolute;
+    width: 100vw;
+    height: 70vh;
+    left: 28vw;
+    top: 25vh;
+    transform: scale(1.2);
+}
+
+.tela-cadastro-section .container .card-cadastro {
+    position: relative;
+    height: auto;
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 9;
+}
+.tela-cadastro-section .container .card-cadastro form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.tela-cadastro-section .container .card-cadastro form .div-input{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.tela-cadastro-section .container .card-cadastro form .div-input span.text-danger{
+    font-size: 10pt;
+    color: #bd2525;
+}
+.tela-cadastro-section .container .card-cadastro span.txtCadastro {
+    font-size: 18pt;
+    color: #bd2525;
+    font-weight: 600;
+}
+
+.tela-cadastro-section .container .card-cadastro.cliente,
+.tela-cadastro-section .container .card-cadastro.produto,
+.tela-cadastro-section .container .card-cadastro.prato {
+    width: 50%;
+    padding: 2.5% 2% 2% 2%;
+    margin-left: 50px;
+    margin-top: -10px;
+}
+
+.tela-cadastro-section .container .card-cadastro input, select {
+    width: 100%;
+}
+
+.tela-cadastro-section .container .card-cadastro input:focus, select:focus {
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.tela-cadastro-section .container .card-cadastro div.div-dois-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tela-cadastro-section .container .card-cadastro div.div-dois-inputs .div-input{
+    width: 49%;
+}
+
+.tela-cadastro-section .container .card-cadastro div.div-dois-inputs input#produto-preco,
+.tela-cadastro-section .container .card-cadastro div.div-dois-inputs input#prato-preco {
+    width: 91%;
+}
+
+.tela-cadastro-section .container .card-cadastro input.btnVerde {
+    width: 30%;
+    align-self: center;
+}
+
+/* EDITAR FUNCIONÁRIO */
+.tela-cadastro-section .container .card-cadastro form label{
+
+    cursor: pointer;
+    margin-bottom: 20%;
+}
+.tela-cadastro-section .container .card-cadastro form label img{
+    width: 15vw;
+    height: 15vw;
+    border-radius: 15vw;
+    transition: all 0.5s ease;
+    position: absolute;
+    left: 43%;
+}
+.tela-cadastro-section .container .card-cadastro form input#funcionarioPerfil{
+    display: none;
+}
+.tela-cadastro-section .container .card-cadastro form .botoes{
+    width: 49%;
+    display: flex;
+    gap: 20px;
+}
+
+.tela-cadastro-section produto-cadastro .card-cadastro produto .radio-inline {
+    flex-direction: column;
+    justify-content: space-between;
+}

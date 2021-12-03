@@ -1,0 +1,89 @@
+﻿@model DragonSushiSystem.ViewModels.ViewModelFuncionario
+@{
+    ViewBag.Title = "Cadastrar Funcionário";
+}
+
+<section class="tela-cadastro-section funcionario-cadastro">
+    <nav class="menu-vertical funcionario">
+        <a class="menu-vertical--links atual" href="@Url.Action("CadastrarFuncionario", "ViewModelFuncionario")">Cadastrar Funcionário</a>
+        <a class="menu-vertical--links" href="@Url.Action("ListarFuncionario", "ViewModelFuncionario")">Consultar Funcionário</a>
+    </nav>
+    <div class="container">
+        <div class="card-cadastro funcionario">
+            <span class="txtCadastro">Cadastrar funcionário</span>
+            @using (Html.BeginForm("CadastrarFuncionario", "ViewModelFuncionario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Funcionario.FuncionarioNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome completo" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioNome, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Funcionario.FuncionarioCPF, new { htmlAttributes = new { @class = "form-control", @placeholder = "CPF" } })
+                        @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioCPF, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Endereco.Cep, new { htmlAttributes = new { @class = "form-control", @placeholder = "CEP" } })
+                        @Html.ValidationMessageFor(model => model.Endereco.Cep, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Endereco.Logradouro, new { htmlAttributes = new { @class = "form-control", @placeholder = "Logradouro" } })
+                    @Html.ValidationMessageFor(model => model.Endereco.Logradouro, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Funcionario.FuncionarioNumeroEndereco, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número" } })
+                        @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioNumeroEndereco, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Funcionario.FuncionarioComplemento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Complemento" } })
+                        @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioComplemento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Estado.UF, new { htmlAttributes = new { @class = "form-control", @placeholder = "UF" } })
+                        @Html.ValidationMessageFor(model => model.Estado.UF, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Cidade.CidadeNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cidade" } })
+                        @Html.ValidationMessageFor(model => model.Cidade.CidadeNome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Bairro.BairroNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Bairro" } })
+                        @Html.ValidationMessageFor(model => model.Bairro.BairroNome, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Cargo.CargoNome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cargo" } })
+                        @Html.ValidationMessageFor(model => model.Cargo.CargoNome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="div-input">
+                    @Html.EditorFor(model => model.Funcionario.FuncionarioTelefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefone" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioTelefone, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="div-dois-inputs">
+                    <div class="div-input">
+                        @Html.EditorFor(model => model.Funcionario.FuncionarioSenha, new { htmlAttributes = new { @class = "form-control", @placeholder = "Senha" } })
+                        @Html.ValidationMessageFor(model => model.Funcionario.FuncionarioSenha, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="div-input">
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+                <input type="submit" value="Cadastrar" class="btnVerde">
+            }
+
+        </div>
+    </div>
+</section>

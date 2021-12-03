@@ -1,0 +1,36 @@
+﻿@model DragonSushiSystem.Models.Funcionario
+
+@{
+    ViewBag.Title = "Segurança";
+}
+
+<section class="seguranca-section">
+    <div class="seguranca">
+        <span class="seguranca-nome">@Html.DisplayNameFor(model => model.FuncionarioNome)</span>
+        <div class="seguranca-item">
+            <svg width="36" height="36" viewBox="8 7 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M41.48 28.0597H39.04V23.1797C39.04 18.4217 35.258 14.6397 30.5 14.6397C25.742 14.6397 21.96 18.4217 21.96 23.1797V28.0597H19.52V23.1797C19.52 17.0797 24.4 12.1997 30.5 12.1997C36.6 12.1997 41.48 17.0797 41.48 23.1797V28.0597Z" fill="#777777" />
+                <path d="M40.26 48.7998H20.74C18.666 48.7998 17.08 47.2138 17.08 45.1398V30.4998C17.08 28.4258 18.666 26.8398 20.74 26.8398H40.26C42.334 26.8398 43.92 28.4258 43.92 30.4998V45.1398C43.92 47.2138 42.334 48.7998 40.26 48.7998ZM20.74 29.2798C20.008 29.2798 19.52 29.7678 19.52 30.4998V45.1398C19.52 45.8718 20.008 46.3598 20.74 46.3598H40.26C40.992 46.3598 41.48 45.8718 41.48 45.1398V30.4998C41.48 29.7678 40.992 29.2798 40.26 29.2798H20.74Z" fill="#777777" />
+                <path d="M30.5001 36.6002C31.8476 36.6002 32.9401 35.5078 32.9401 34.1602C32.9401 32.8126 31.8476 31.7202 30.5001 31.7202C29.1525 31.7202 28.0601 32.8126 28.0601 34.1602C28.0601 35.5078 29.1525 36.6002 30.5001 36.6002Z" fill="#777777" />
+                <path d="M31.11 34.1602H29.89L28.67 41.4802H32.33L31.11 34.1602Z" fill="#777777" />
+            </svg>
+            <p>Alterar senha</p>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="input-class">
+                @Html.EditorFor(model => model.FuncionarioSenha, new { htmlAttributes = new { @placeholder = "Senha atual" } })
+            </div>
+            <div class="input-class">
+                @Html.EditorFor(model => model.NovaSenha, new { htmlAttributes = new { @placeholder = "Nova senha" } })
+            </div>
+            <div class="input-class">
+                @Html.EditorFor(model => model.ConfirmacaoNovaSenha, new { htmlAttributes = new { @placeholder = "Corfirmação da nova senha" } })
+            </div>
+            <button class="btnAzul" type="submit">Salvar</button>
+        }
+    </div>
+</section>

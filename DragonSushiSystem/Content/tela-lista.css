@@ -1,0 +1,59 @@
+body{
+    height: 100vh;
+    background: #f8f8f8;
+}
+.tela-lista-section{
+    height: 100%;
+    margin-left: 60px;
+}
+.tela-lista-section .lista-table{
+    width: 100%;
+    height: calc(100% - 60px);
+
+    padding: 10px 60px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.tela-lista-section .lista-table form.search-caixa{
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+
+    padding: 6px 12px;
+    border-radius: 50px;
+
+    /* border: 1px solid orange; */
+}
+.tela-lista-section .lista-table form.search-caixa input{
+    width: 100%;
+    height: 100%;
+    
+    background-color: transparent;
+
+    font-size: 12pt;
+    color: #000;
+}
+.tela-lista-section .lista-table form.search-caixa button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.tela-lista-section .lista-table form.search-caixa button svg{
+    width: 24px;
+    height: 24px;
+}
+.tela-lista-section .lista-table div.lista-index-table{
+    width: 100%;
+    height: 100%;
+
+    padding: 16px;
+    border-radius: 20px;
+
+    background: #fff;
+}

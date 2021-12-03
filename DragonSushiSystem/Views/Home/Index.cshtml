@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DragonSushiSystem.Models.Produto>
+
+@{
+    ViewBag.Title = "Home";
+}
+<section class="home-section">
+    <img src="~/images/Sushi%20cook-bro.svg">
+    <div class="home-cards">
+        <div class="card home-estoque">
+            <h2 class="card-titulo">Controle de Estoque</h2>
+            @foreach (var item in Model)
+            {
+                <div class="item-estoque">
+                    <h3 class="item-nome">@item.ProdutoNome</h3>
+                    @if (item.ProdutoQuantidade <= 10)
+                    {
+                        <div class="item-status vermelho">
+                            <h3>Em falta</h3>
+                        </div>
+                    }
+                    @if (item.ProdutoQuantidade <= 70)
+                    {
+                        <div class="item-status amarelo">
+                            <h3>Acabando</h3>
+                        </div>
+                    }
+                    @if (item.ProdutoQuantidade >= 70)
+                    {
+                        <div class="item-status verde">
+                            <h3>Normal</h3>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="card home-reserva">
+
+        </div>
+    </div>
+</section>

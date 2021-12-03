@@ -1,0 +1,41 @@
+﻿@model DragonSushiSystem.ViewModels.ViewModelReserva
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <p class="titulo-reserva">Reserva</p>
+    @Html.EditorFor(model => model.Reserva.ReservaData, new { htmlAttributes = new { @type="date", @class = "form-control", @placeholder = "Data" } })
+    @Html.ValidationMessageFor(model => model.Reserva.ReservaData, "", new { @class = "text-danger" })
+    <div class="radiobox-periodos">
+        <div class="radioButton">
+            @Html.RadioButtonFor(model => model.Reserva.ReservaPeriodo, "Almoço")
+            @Html.RadioButtonFor(model => model.Reserva.ReservaPeriodo, "Jantar")
+        </div>
+    </div>
+    <select name="" id="">
+        <option disabled selected>Nome cliente</option>
+        @foreach (var item in Model.listaClientes)
+        {
+            foreach (var subitem in item.listaClientes)
+            {
+                <option value="@subitem.ClienteID">
+                    @subitem.ClienteNome
+                </option>
+            }
+        }
+    </select>
+    <select name="" id="">
+        <option disabled selected>Mesa</option>
+        @foreach (var item in Model.listaMesas)
+        {
+            <option value="@item.MesaID">
+                Mesa  @item.MesaID
+            </option>
+        }
+    </select>
+    <div class="buttons">
+        <button type="submit" class="btnVermelho">Deletar</button>
+        <button type="button" class="btnVerde">Salvar</button>
+    </div>
+}

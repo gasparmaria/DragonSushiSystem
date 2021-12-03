@@ -1,0 +1,79 @@
+body{
+    height: 100%;
+    background: #f8f8f8;
+}
+.lista-tela{
+    height: 100%;
+    margin-left: 60px;
+}
+.lista-tela .lista-tela--conteudo{
+    height: 100%;
+    width: 100%;
+    padding: 24px 16px;
+}
+.lista-tela .lista-tela--conteudo .tabela-item{
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left:4.5vw;
+    margin-top: 5vh;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-header{ 
+    font-weight: 600;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-header,
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body .linha{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #000;
+    padding: 15px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-codigo {
+    width: 4vw;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-nome{
+    width:12vw;
+}
+
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-descricao{
+    width:30vw;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-quantidade{
+    width:9vw;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status{
+    width:12vw;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body .tabela-item-status{
+    width:12vw;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20%;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status .circulo{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.vermelho > .circulo{
+    background-color: #bd2525;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.vermelho > span.status{
+    color: #bd2525;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.amarelo > .circulo{
+    background-color: #F8AC3B;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.amarelo > span.status{
+    color: #F8AC3B;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.verde > .circulo{
+    background-color: #31852e;
+}   
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-status.verde > span.status{
+    color: #31852e;
+}

@@ -1,0 +1,89 @@
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-dropdown{
+    width:12px;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body .dropdown{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    overflow-y: auto;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body .tabela-item-dropdown svg{
+    transition: 0.5s ease-in-out;
+}
+/*  */
+/* DROPDOWN ATIVO */
+/*  */
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo{
+    /* GAMBIARRA PARA "ENGORADAR" A DIV */
+    width: calc(100% + 3%);
+    margin-left: -1.5%;
+    margin-top: -1px;
+    padding: 0px 1.5%;
+
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .tabela-item-dropdown svg{
+    transition: 0.5s ease-in-out;
+    transform: rotate(180deg);
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown{
+    height: auto;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px 16px;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs{
+    display: flex;
+    flex-direction: column;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs label{
+    align-self: flex-start;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.um{
+    grid-column: 1;
+    grid-row: 1;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.dois{
+    grid-column: 1;
+    grid-row: 2;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.tres{
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.tres textarea{
+    width: 100%;
+    height: 100%;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.tres textarea:focus{
+    outline: none;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.quatro{
+    grid-column: 3;
+    grid-row: 1;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-inputs.cinco{
+    grid-column: 3;
+    grid-row: 2;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-buttons, svg{
+    grid-column: 4;
+    grid-row: 2;
+
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-buttons svg:hover > path{
+    transform: scale(1.07);
+    transition: 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-buttons svg#editar:hover > path{
+    fill: #149CFF;
+}
+.lista-tela .lista-tela--conteudo .tabela-item .tabela-item-body.ativo .dropdown .dropdown-buttons svg#excluir:hover > path{
+    fill: #bd2525;
+}

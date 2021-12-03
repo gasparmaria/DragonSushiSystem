@@ -1,0 +1,98 @@
+body{
+    overflow: hidden;
+}
+.home-section{
+    position: relative;
+    background: #F8F8F8;
+    min-height: 100vh;
+    top: 0;
+    left: 58px;
+    width: calc(100% - 58px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+.home-section .text{
+    display: inline-block;
+    color: #bd2525;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px
+}
+.home-section img{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: -19vw;
+    top: 2vh;
+    transform: scale(1.2, 1.1);
+    
+}
+.home-section .home-cards{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    float: right; 
+    padding: 20px 80px 20px 0;
+    width: auto;
+    height: 100vh;
+}
+.home-section .card{
+    width: 30vw;
+    height: 40vh;
+    background: #FFF;
+    border-radius: 30px;
+    /* align-items: center; */
+}
+.home-section .card.home-estoque{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-content: center;
+    align-items: center;
+}
+.home-section .card h2.card-titulo,
+.home-section .card .item-estoque h3.item-nome{
+    font-size: 11pt;
+    font-weight: 500;
+    padding: 20px 15px;
+}
+.home-section .card .item-estoque{
+    width: 90%;
+    height: 20%;
+    background-color: #F8F8F8;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    margin:4px;
+}
+.home-section .card .item-estoque div.item-status.vermelho{
+    width:35%;
+    height:40%;
+    background:#bd2525;
+    border-radius: 8px;
+    text-align: center;
+}
+.home-section .card .item-estoque div.item-status.amarelo{
+    width:35%;
+    height:40%;
+    background:#F8AC3B;
+    border-radius: 8px;
+    text-align: center;
+}
+.home-section .card .item-estoque div.item-status.verde{
+    width:35%;
+    height:40%;
+    background:#31852e;
+    border-radius: 8px;
+    text-align: center;
+}
+.home-section .card .item-estoque div.item-status h3{
+    font-size: 10pt;
+    font-weight: 500;
+    color: #fff;
+}
+

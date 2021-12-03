@@ -1,0 +1,42 @@
+*{
+    font-family: 'Montserrat';
+}
+.seguranca-section{
+    width: 100vw;
+    height: 100vh;
+    background: #F8F8F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.seguranca{
+    width: 33%;
+    height: 75%;
+    background: #fff;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+.seguranca .seguranca-nome{
+    color: #BD2525;
+    font-weight: 600;
+    padding: 10px;
+    font-size: 14pt;
+}
+.seguranca .seguranca-item{
+    flex-direction: row;
+    display: flex;
+    width: 25vw;
+}
+.seguranca p{
+    color: #777777;
+    padding: 10px;
+}
+.seguranca input{
+    width: 25vw;
+}

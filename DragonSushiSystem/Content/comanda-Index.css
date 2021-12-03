@@ -1,0 +1,130 @@
+*{
+    font-family: 'Montserrat';
+    box-sizing: border-box;
+}
+body{
+    position:relative;
+    background: #F8F8F8;
+    overflow-x: hidden;
+}
+.comanda-index-section{
+    width: 100%;
+    height: auto;
+    margin-left: 30px;
+}
+
+.comanda-index-section .grid-comanda{
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 30px 80px;
+    padding: 30px 20px;
+    margin: 0 auto;
+}
+.comanda-index-section .grid-comanda .card-comanda{
+    height: 180px;
+    background-color: #FFF;
+    border-radius: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    text-decoration:none;
+}
+.comanda-index-section .grid-comanda .card-comanda:hover{
+    transform: scale(1.1);
+}
+.comanda-index-section .grid-comanda .card-comanda .numero-comanda{
+    width: 100%;
+    height: auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.adicionar-comanda{
+    background: rgb(255, 255, 255);
+    grid-column: 3 / span 2;
+    grid-row: 1 / 3;
+    transition: 5s ease-in;
+    border-radius: 30px;
+    padding: 20px 50px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    display: none;
+}
+
+.adicionar-comanda-aberto{
+    display: block;
+    transition: 5s ease-in;
+}
+.adicionar-comanda h1 {
+    font-size: 16pt;
+    font-weight: 500;
+    text-align: center;
+}
+.adicionar-comanda .comanda-selecao-identificacao{
+    border-bottom: 1px solid #bd2525;
+    transition: 0.5s ease-in-out;
+}
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button{
+    padding: 2% 0px;
+}
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label:hover{
+    cursor: pointer;
+}
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label, h3 {
+    font-size: 12pt;
+    font-weight: 500;
+    color: #bd2525;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label svg{
+    transition: 0.5s ease-in-out;
+}
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label svg.dropdown-ativo{
+    transform: rotate(-180deg);
+    transition: 0.5s ease-in-out;
+}
+.adicionar-comanda .comanda-selecao-identificacao .dropdown-button input{
+    display: none;
+}
+.adicionar-comanda .comanda-selecao-identificacao .add-comanda{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    gap: 2vh;
+}
+.adicionar-comanda .comanda-selecao-identificacao.dropdown-ativo{
+    padding: 5% 0px;
+}
+.adicionar-comanda .comanda-selecao-identificacao.dropdown-ativo .add-comanda{
+    height: auto;
+}
+.adicionar-comanda .comanda-selecao-identificacao .add-comanda select {
+    width: 100%;
+}
+.adicionar-comanda .comanda-selecao-identificacao .add-comanda button {
+    align-self: flex-end;
+}
+.adicionar-comanda .comanda-selecao-identificacao a {
+    text-decoration: none;
+    color: #000;
+    font-size: 10pt;
+}
+
+.adicionar-comanda .comanda-selecao-identificacao .btnVerde {
+    width: 9vw;
+    padding: 5px;
+}
