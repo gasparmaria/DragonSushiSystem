@@ -18,7 +18,7 @@
                             <h3>Em falta</h3>
                         </div>
                     }
-                    @if (item.ProdutoQuantidade <= 70)
+                    @if (item.ProdutoQuantidade <= 70 && item.ProdutoQuantidade > 10)
                     {
                         <div class="item-status amarelo">
                             <h3>Acabando</h3>

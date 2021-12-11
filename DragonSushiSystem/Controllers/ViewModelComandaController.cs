@@ -16,76 +16,60 @@ namespace DragonSushiSystem.Controllers
             return View(listaComandasAbertas);
         }
 
-
-        // GET: ViewModelComanda/Details/5
-        public ActionResult Details(int id)
+        public ActionResult CadastrarComanda()
         {
-            return View();
+            ViewModelComanda vmComanda = new ViewModelComanda();
+            var listaComandasAbertas = vmComanda.listarTodosComandasAbertas().FirstOrDefault();
+
+            return View(listaComandasAbertas);
         }
 
-        // GET: ViewModelComanda/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ViewModelComanda/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CadastrarComanda(ViewModelComanda vmComanda)
         {
+
             try
             {
-                // TODO: Add insert logic here
+                if (vmComanda.Mesa == null)
+                {
+                    vmComanda.Mesa = new Mesa();
+                    vmComanda.cadastrarComanda(vmComanda);
+                }
+                else if(vmComanda.Cliente == null)
+                {
+                    vmComanda.Cliente = new Cliente();
+                    vmComanda.cadastrarComanda(vmComanda);
+                }
+                var listaComandas = vmComanda.listarTodosComandasAbertas();
+                return View("ListarComanda", listaComandas);
 
-                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+
         }
 
-        // GET: ViewModelComanda/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditarComanda(int id)
         {
-            return View();
+            ViewModelComanda vmComanda = new ViewModelComanda();
+            var ComandaSelecionada = vmComanda.listarComandaPorID(id);
+            return View(ComandaSelecionada);
         }
 
-        // POST: ViewModelComanda/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditarComanda(ViewModelComanda vmComanda)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                //vmComanda.editarComanda(vmComanda);
+                var listaComandas = vmComanda.listarTodosComandasAbertas();
+                return View("ListarComanda", listaComandas);
             }
             catch
             {
-                return View();
-            }
-        }
-
-        // GET: ViewModelComanda/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ViewModelComanda/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                return View(vmComanda);
             }
         }
     }

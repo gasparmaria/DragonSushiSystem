@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web;
 using System.IO;
+using DragonSushiSystem.Models;
 
 namespace DragonSushiSystem.Controllers
 {
@@ -83,24 +84,33 @@ namespace DragonSushiSystem.Controllers
         public ActionResult DeletarFuncionario(int id)
         {
             ViewModelFuncionario vmFuncionario = new ViewModelFuncionario();
-            var funcionarioSelecionado = vmFuncionario.listarFuncionarioPorID(id);
-            return PartialView(funcionarioSelecionado);
-        }
-
-        // POST: ViewModelFuncionario/Delete/5
-        [HttpPost]
-        public ActionResult DeletarFuncionario(ViewModelFuncionario vmFuncionario)
-        {
             try
             {
-                vmFuncionario.deletarFuncionario(vmFuncionario);
+                vmFuncionario.deletarFuncionario(id);
                 var funcionarios = vmFuncionario.listarTodosFuncionarios();
                 return RedirectToAction("ListarFuncionario", funcionarios);
             }
             catch
             {
-                return PartialView();
+                return View("ListarFuncionario");
             }
         }
+
+        // // POST: ViewModelFuncionario/Delete/5
+        // [HttpPost]
+        // public ActionResult DeletarFuncionario(Funcionario funcionario)
+        // {
+        //     ViewModelFuncionario vmFuncionario = new ViewModelFuncionario();
+        //     try
+        //     {
+        //         vmFuncionario.deletarFuncionario(funcionario);
+        //         var funcionarios = vmFuncionario.listarTodosFuncionarios();
+        //         return RedirectToAction("ListarFuncionario", funcionarios);
+        //     }
+        //     catch
+        //     {
+        //         return View("NotaFiscal");
+        //     }
+        // }
     }
 }

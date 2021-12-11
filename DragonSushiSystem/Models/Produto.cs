@@ -50,7 +50,7 @@ namespace DragonSushiSystem.Models
         public void editarProduto(Produto produto)
         {
             Conexao conexao = new Conexao();
-            string updateQuery = String.Format("UPDATE tbProduto SET ProdutoNome = @NomeProduto, ProdutoDescricao = @DescricaoProduto, ProdutoPreco = @PrecoProduto, ProdutoQuantidade = @QuantidadeProduto, ProdutoIngrediente = @IngredienteProduto WHERE ProdutoID = @ProdutoID);");
+            string updateQuery = "UPDATE tbProduto SET ProdutoNome = @NomeProduto, ProdutoDescricao = @DescricaoProduto, ProdutoPreco = @PrecoProduto, ProdutoQuantidade = @QuantidadeProduto, IngredienteProduto = @IngredienteProduto WHERE ProdutoID = @ProdutoID";
 
             MySqlCommand command = new MySqlCommand(updateQuery, conexao.ConectarBD());
             command.Parameters.Add("@NomeProduto", MySqlDbType.VarChar).Value = produto.ProdutoNome;
@@ -60,8 +60,18 @@ namespace DragonSushiSystem.Models
             command.Parameters.Add("@IngredienteProduto", MySqlDbType.Int32).Value = produto.ProdutoIngrediente;
             command.Parameters.Add("@ProdutoID", MySqlDbType.Int32).Value = produto.ProdutoID;
 
-            command.ExecuteNonQuery();
-            conexao.DesconectarBD();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conexao.DesconectarBD();
+            }
         }
 
         public void deletarProduto(Produto produto)
@@ -128,15 +138,6 @@ namespace DragonSushiSystem.Models
             }
             dados.Close();
             return listaProdutos;
-        }
-
-        public List<Produto> procurarProduto(string nomeproduto)
-        {
-            Conexao conexao = new Conexao();
-            var searchQuery = String.Format("SELECT * FROM tbProduto WHERE ProdutoNome LIKE '%{0}%'", nomeproduto);
-            MySqlCommand comando = new MySqlCommand(searchQuery, conexao.ConectarBD());
-            var dados = comando.ExecuteReader();
-            return dadosReaderParaList(dados);
         }
     }
 }

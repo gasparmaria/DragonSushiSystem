@@ -123,8 +123,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Banco\Conexao.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PratoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\ViewModelClienteController.cs" />
@@ -189,12 +189,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\bi_person-circle.svg" />
     <Content Include="images\Cash Payment-bro.svg" />
     <Content Include="images\Cooking-bro.svg" />
     <Content Include="images\DRAGON%2520SUHI%2520EM%2520BAIXO%2520%28vermelha%29.png" />
-    <Content Include="images\DRAGONSUHIDOLADO.svg" />
     <Content Include="images\DRAGONSUHIEMBAIXO.svg" />
+    <Content Include="images\logo_dragonsushi.png" />
+    <Content Include="images\logo_dragonsushi.svg" />
     <Content Include="images\logo_horizontal.svg" />
+    <Content Include="images\markup-cropped.svg" />
     <Content Include="images\Mobile login-amico.svg" />
     <Content Include="images\Mobile login-pana.svg" />
     <Content Include="images\Product hunt-cuate.svg" />
@@ -223,7 +226,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Funcionario\Login.cshtml" />
     <Content Include="Views\Funcionario\Perfil.cshtml" />
-    <Content Include="Views\Funcionario\Seguranca.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Prato\CadastrarPrato.cshtml" />
     <Content Include="Views\Produto\CadastrarProduto.cshtml" />
@@ -241,8 +243,13 @@
     <Content Include="Views\ViewModelFuncionario\ListarFuncionario.cshtml" />
     <Content Include="Views\ViewModelPagamento\NotaFiscal.cshtml" />
     <Content Include="Views\ViewModelPedido\ComandaDetalhes.cshtml" />
-    <Content Include="Views\ViewModelReserva\EditarReserva.cshtml" />
     <Content Include="Views\ViewModelReserva\Reserva.cshtml" />
+    <Content Include="Views\Prato\ListarPrato.cshtml" />
+    <Content Include="Views\Prato\EditarPrato.cshtml" />
+    <Content Include="Views\Funcionario\Seguranca.cshtml" />
+    <Content Include="Views\ViewModelReserva\CadastrarReserva.cshtml" />
+    <Content Include="Views\ViewModelReserva\EditarReserva.cshtml" />
+    <Content Include="Views\ViewModelComanda\CadastrarComanda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

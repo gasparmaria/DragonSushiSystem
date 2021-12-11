@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace DragonSushiSystem.Models
 {
@@ -20,22 +21,27 @@ namespace DragonSushiSystem.Models
         public string PratoDescricao { get; set; }
 
         [Display(Name = "Preço")]
-        [Required(ErrorMessage = "O nome é obrigatório.")]
+        [Required(ErrorMessage = "O preço é obrigatório.")]
         public decimal PratoPreco { get; set; }
 
-        Conexao conexao = new Conexao();
+        
 
-        public void CadastrarPrato(Prato prato)
+        public void cadastrarPrato(Prato prato)
         {
+            Conexao conexao = new Conexao();
             MySqlCommand command = new MySqlCommand("INSERT INTO tbPrato VALUES(DEFAULT,@NomePrato,@DescricaoPrato,@PrecoPrato)", conexao.ConectarBD());
             command.Parameters.Add("@NomePrato", MySqlDbType.VarChar).Value = prato.PratoNome;
             command.Parameters.Add("@DescricaoPrato", MySqlDbType.VarChar).Value = prato.PratoDescricao;
             command.Parameters.Add("@PrecoPrato", MySqlDbType.Decimal).Value = prato.PratoPreco;
+
+            command.ExecuteNonQuery();
+            conexao.DesconectarBD();
         }
 
-        public void EditarPrato(Prato prato)
+        public void editarPrato(Prato prato)
         {
-            string updateQuery = String.Format("UPDATE tbPrato SET PratoNome = @NomePrato, PratoDescricao = @DescricaoPrato, PratoPreco = @PrecoPrato WHERE PratoID = @PratoID");
+            Conexao conexao = new Conexao();
+            string updateQuery = "UPDATE tbPrato SET PratoNome = @NomePrato, PratoDescricao = @DescricaoPrato, PratoPreco = @PrecoPrato WHERE PratoID = @PratoID";
             MySqlCommand command = new MySqlCommand(updateQuery, conexao.ConectarBD());
             command.Parameters.Add("@NomePrato", MySqlDbType.VarChar).Value = prato.PratoNome;
             command.Parameters.Add("@DescricaoPrato", MySqlDbType.VarChar).Value = prato.PratoDescricao;
@@ -57,5 +63,49 @@ namespace DragonSushiSystem.Models
             command.ExecuteNonQuery();
             conexao.DesconectarBD();
         }
+
+
+        public List<Prato> listarTodosPratos()
+        {
+            Conexao conexao = new Conexao();
+
+            MySqlCommand selectCommand = new MySqlCommand("SELECT * FROM tbPrato", conexao.ConectarBD());
+            var dados = selectCommand.ExecuteReader();
+
+            return dadosReaderParaList(dados);
+        }
+
+        public Prato listarPratoPorID(int id)
+        {
+            Conexao conexao = new Conexao();
+            var selectQuery = String.Format("SELECT * FROM tbPrato WHERE PratoID = {0}", id);
+            MySqlCommand comando = new MySqlCommand(selectQuery, conexao.ConectarBD());
+            var dados = comando.ExecuteReader();
+            return dadosReaderParaList(dados).FirstOrDefault();
+        }
+
+        public List<Prato> dadosReaderParaList(MySqlDataReader dados)
+        {
+            var listaPratos = new List<Prato>();
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+
+                    var Prato = new Prato()
+                    {
+                        PratoID = Conexao.ConverteInt32(dados["PratoID"]),
+                        PratoNome = Conexao.ConverteString(dados["PratoNome"]),
+                        PratoDescricao = Conexao.ConverteString(dados["PratoDescricao"]),
+                        PratoPreco = Conexao.ConverteDecimal(dados["PratoPreco"])
+                    };
+                    listaPratos.Add(Prato);
+                }
+            }
+            dados.Close();
+            return listaPratos;
+        }
+
     }
 }

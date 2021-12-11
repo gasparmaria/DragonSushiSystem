@@ -10,17 +10,6 @@
         <a class="menu-vertical--links atual" href="@Url.Action("ListarFuncionario", "ViewModelFuncionario")">Consultar Funcionário</a>
     </nav>
     <div class="lista-table funcionario">
-        <form class="search-caixa" method="" action="">
-            <input class="search-input" type="search" name="search">
-            <button class="search-button__link" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     aria-hidden="true" role="img" width="20" height="20" preserveAspectRatio="xMidYMid meet"
-                     viewBox="0 0 24 24">
-                    <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6z"
-                          fill="#777" />
-                </svg>
-            </button>
-        </form>
         <div class="lista-index-table funcionario-table">
             <table>
                 <thead>
@@ -44,7 +33,7 @@
                             <td><button class="btnAzul btnEditar">@Html.ActionLink("Editar", "EditarFuncionario", new { id = item.Funcionario.FuncionarioID })</button></td>
                             <td>
                                 @*<a href="@Url.Action("DeletarFuncionario", "ViewModelFuncionario", new { id = item.Funcionario.FuncionarioID } )" type="button" class="btnVermelho" data-toggle="modal" >Deletar</a>-->*@
-                                <button type="button" class="btnVermelho">Deletar</button>
+                                <button type="button" class="btnVermelho" data-value="@item.Funcionario.FuncionarioID">Deletar</button>
                                 <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("DeletarFuncionario", "ViewModelFuncionario", new { id = item.Funcionario.FuncionarioID } )'></div>
                             </td>
                         </tr>
@@ -54,14 +43,28 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="conteudoDeletar">
+        
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $(".btnVermelho").click(function () {
-            var url = $('#myModal').data('url');
-            $.get(url, function (data) {
-                $("#myModal").html(data);
-                $("#myModal").modal('show');
-            });
+            var id = $(this).data('value');
+            $("#conteudoDeletar").load("/ViewModelFuncionario/DeletarFuncionario/"+id,
+                function(){
+                    $("#myModal").modal("show");
+                }
+            )
         });
     });
 </script>

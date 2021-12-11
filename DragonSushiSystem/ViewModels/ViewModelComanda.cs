@@ -19,6 +19,17 @@ namespace DragonSushiSystem.ViewModels
 
         public List<Mesa> listaMesas { get; set; }
 
+        public void cadastrarComanda(ViewModelComanda viewModelComanda)
+        {
+            Conexao conexao = new Conexao();
+            MySqlCommand command = new MySqlCommand("INSERT INTO tbComanda VALUES (DEFAULT, @MesaID, @ClienteID, DEFAULT)", conexao.ConectarBD());
+
+                command.Parameters.Add("@MesaID", MySqlDbType.Int32).Value = viewModelComanda.Comanda.FK_Mesa;
+                command.Parameters.Add("@ClienteID", MySqlDbType.Int32).Value = viewModelComanda.Comanda.FK_Cliente;
+
+            command.ExecuteNonQuery();
+            conexao.DesconectarBD();
+        }
 
         public List<ViewModelComanda> listarTodosComandasAbertas()
         {

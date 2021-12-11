@@ -1,4 +1,4 @@
-﻿@model DragonSushiSystem.Models.Funcionario
+﻿    @model DragonSushiSystem.Models.Funcionario
 
 @{
     Layout = null;
@@ -32,8 +32,6 @@
                     </div>
                     <div class="input-class">
                         @Html.EditorFor(model => model.FuncionarioSenha, new { htmlAttributes = new { @type = "password", @placeholder = "Senha" } })
-                        <br />
-                        <a href="#">Esqueci minha senha</a>
                     </div>
                     <button class="btnAzul" type="submit">Entrar</button>
                 }

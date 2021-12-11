@@ -4,8 +4,8 @@
 }
 <section class="tela-cadastro-section produto-cadastro">
     <nav class="menu-vertical produto">
-        <a class="menu-vertical--links atual" href="#">Gerenciar estoque</a>
-        <a class="menu-vertical--links" href="#">Gerenciar pratos</a>
+        <a class="menu-vertical--links atual" href="@Url.Action("ListarProduto", "Produto")">Gerenciar estoque</a>
+        <a class="menu-vertical--links" href="@Url.Action("ListarPrato", "Prato")">Gerenciar pratos</a>
     </nav>
     <div class="container" id="produto">
         <div class="card-cadastro produto">
@@ -28,16 +28,14 @@
                 </div>
                 <div class="div-dois-inputs">
                     <input type="text" placeholder="R$" id="readonly-preco" readonly />
-                    @Html.EditorFor(model => model.ProdutoPreco, new { htmlAttributes = new { @class = "form-control", @placeholder = "Preço" } })
+                    @Html.EditorFor(model => model.ProdutoPreco, new { htmlAttributes = new { @class = "form-control", @placeholder = "Preço" , @style = "margin-left:10px"} })
                     @Html.ValidationMessageFor(model => model.ProdutoPreco, "", new { @class = "text-danger" })
                 </div>
                 <div class="div-dois-inputs">
-                    <div class="radio-inline">
-                        @Html.RadioButtonFor(model => model.ProdutoIngrediente, 1)
-                        <p>Ingrediente</p>
-                        @Html.RadioButtonFor(model => model.ProdutoIngrediente, 0)
-                        <p>Produto</p>
-                    </div>
+                    @Html.RadioButtonFor(model => model.ProdutoIngrediente, 1, new { htmlAttributes = new { @style = "width:10%"} })
+                    <p style="margin-left:-50px">Ingrediente</p>
+                    @Html.RadioButtonFor(model => model.ProdutoIngrediente, 0)
+                    <p>Produto</p>
                 </div>
                 <div class="div-input">
                     @Html.EditorFor(model => model.ProdutoQuantidade, new { htmlAttributes = new { @class = "form-control", @placeholder = "Quantidade" } })

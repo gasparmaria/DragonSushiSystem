@@ -1,0 +1,69 @@
+﻿@model DragonSushiSystem.ViewModels.ViewModelComanda
+
+@{
+    ViewBag.Title = "Cadastrar Comanda";
+}
+
+<div class="container" id="comanda">
+    <div class="card-cadastro comanda">
+        <div class="adicionar-comanda">
+            <h1>Nova Comanda</h1>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="comanda-selecao-identificacao">
+                    <div class="dropdown-button">
+                        <label class="dropdown-button-label" for="dropdown-icon-mesa">
+                            <h3>Mesa</h3>
+                            <svg width="25" height="12" viewBox="0 0 40 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                                      fill="#BD2525" />
+                            </svg>
+                        </label>
+                        <input type="checkbox" id="dropdown-icon-mesa" />
+                    </div>
+                    <div class="add-comanda">
+                        @Html.EditorFor(model => model.Mesa.MesaID)
+                    </div>
+                </div>
+                <div class="comanda-selecao-identificacao">
+                    <div class="dropdown-button">
+                        <label class="dropdown-button-label" for="dropdown-icon-cliente">
+                            <h3>Cliente</h3>
+                            <svg width="25" height="12" viewBox="0 0 40 22" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                                      fill="#BD2525" />
+                            </svg>
+                        </label>
+                        <input type="checkbox" id="dropdown-icon-cliente" />
+                    </div>
+                    <div class="add-comanda">
+                        <select class="input-class" name="Comanda.FK_ClienteID">
+                            <option selected disabled>Cliente</option>
+                            @for (int i = 0; i < Model.listaClientes.Count(); i++)
+                            {
+                                <option value="@Model.listaClientes[i].ClienteID">@Model.listaClientes[i].ClienteTelefone</option>
+                            }
+                        </select>
+                        <a href="@Url.Action("ListarCliente", "ViewModelCliente")">Gerenciar clientes</a>
+                    </div>
+                </div>
+                <button class="btnVerde" type="submit">Salvar</button>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    const accordion = document.querySelectorAll(`.comanda-selecao-identificacao`)
+    let svg = document.querySelectorAll(`.adicionar-comanda .comanda-selecao-identificacao .dropdown-button label svg`)
+    let button = document.querySelectorAll(`.dropdown-button-label`)
+
+    for (let i = 0; i < accordion.length; i++) {
+        button[i].addEventListener(`click`, () => {
+            accordion[i].classList.toggle(`dropdown-ativo`)
+            svg[i].classList.toggle(`dropdown-ativo`)
+        })
+    }
+</script>

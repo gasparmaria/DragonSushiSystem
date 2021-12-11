@@ -16,6 +16,7 @@ namespace DragonSushiSystem.Models
         public string ClienteNome { get; set; }
 
         [Display(Name = "Número")]
+        [Range(1,int.MaxValue, ErrorMessage = "Insira um número de endereço válido.")]
         [Required(ErrorMessage = "O número de endereço é obrigatório.")]
         public int? ClienteNumeroEndereco { get; set; }
 

@@ -1,97 +1,92 @@
 ﻿@model IEnumerable<DragonSushiSystem.ViewModels.ViewModelReserva>
-
+@{
+    ViewBag.Title = "Reserva";
+}
 <section class="reserva-section">
     <div class="container">
         <div class="escolher-data">
-            <svg width="24" height="24" id="esquerda" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
-                        fill="#000" />
-            </svg>
-            <p class="data">Terça-feira, 28 de novembro</p>
-            <svg width="24" height="24" id="direita" viewBox="0 0 22 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
-                        fill="#000" />
-            </svg>
+            @{
+                DateTime data = DateTime.Now;
+            }
+            <button type="submit" value="@{data = data.AddDays(-1);}">
+                <svg width="24" height="24" id="esquerda" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                          fill="#000" />
+                </svg>
+            </button>
+            <p class="data" name="txtData">@data.ToString("dddd, dd MMMM")</p>
+            <button type="submit" value="@{data = data.AddDays(1);}">
+                <svg width="24" height="24" id="direita" viewBox="0 0 22 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.66384 0L0 1.66384L14.4531 16.117L15.2845 16.9113L16.1158 16.117L30.5689 1.66384L28.9062 0.00115561L15.2856 13.6218L1.66384 0Z"
+                            fill="#000" />
+                </svg>
+            </button>
         </div>
-            <div class="mesas-container">
-                @{
-                    foreach (var item in Model)
+        <div class="mesas-container">
+            @{
+                foreach (var item in Model)
+                {
+                    var subitem = item.listaReservas;
+
+                    var mesas = item.listaMesas.Count();
+
+                    List<int> mesasreservadas = new List<int>();
+
+                    foreach (var reserva in subitem)
                     {
-                        for (var i = 1; i <= item.listaMesas.Count; i++)
+                        mesasreservadas.Add(reserva.FK_MesaID);
+                    }
+
+                    for (int i = 1; i <= mesas; i++)
+                    {
+                        if (mesasreservadas.Contains(i))
                         {
-                            if (i = item.listaReservas.MesaID)
-                            {
-                                <a class="mesa ocupada" id="mesa-@i">@i</a>
-                            }
-                            else
-                            {
-                                <a class="mesa livre" id="mesa-@i">@i</a>
-                            }
+                            <a class="mesa ocupada" id="mesa-@i">@i</a>
+                        }
+                        else
+                        {
+                            <a class="mesa livre" id="mesa-@i">@i</a>
                         }
                     }
                 }
-            </div>
+            }
+        </div>
         <div class="lateral">
             <div class="detalhes-dia">
-                <div class="filtros">
-                    <p class="filtros-titulo">Filtrar por:</p>
-                    <div class="filtrar-periodo">
-                        <div class="checkbox">
-                            <label for="cbAlmoco">Almoço</label>
-                            <input type="checkbox" name="" id="cbAlmoco">
-                        </div>
-                        <div class="checkbox">
-                            <label for="cbJantar">Jantar</label>
-                            <input type="checkbox" name="" id="cbJantar">
-                        </div>
-                    </div>
-                    <form class="search-caixa" method="" action="">
-                        <input class="search-input" type="search" name="search">
-                        <button class="search-button__link" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    aria-hidden="true" role="img" width="20" height="20" preserveAspectRatio="xMidYMid meet"
-                                    viewBox="0 0 24 24">
-                                <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6z"
-                                        fill="#777" />
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-
+                <p class="filtros-titulo">Reservas do dia:</p>
                 <div class="container-mesas-reservadas">
                     @foreach (var item in Model)
                     {
-                        <div class="card-mesa-reservada">
-                            <div class="header almoco">
-                                <p>@item.Reserva.ReservaPeriodo</p>
-                            </div>
-                            <div class="content">
-                                <p>@item.Cliente.ClienteNome</p>
-                                <p>Mesa @item.Mesa.MesaID</p>
-                                <p>@item.Reserva.ReservaNumeroPessoas pessoas</p>
-                            </div>
-                        </div>
+                        if (item.Reserva.ReservaID != 0)
+                        {
+                            <a href="~/ViewModelReserva/EditarReserva/@item.Reserva.ReservaID">
+                                <div class="card-mesa-reservada">
+                                    <div class="header almoco">
+                                        <p>@item.Reserva.ReservaPeriodo</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>@item.Cliente.ClienteNome</p>
+                                        <p>Mesa @item.Mesa.MesaID</p>
+                                        <p>@item.Reserva.ReservaNumeroPessoas pessoas</p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
                     }
                 </div>
-                <div class="nova-reserva">
-                    @*@Html.RenderPartial*@
-                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="btn-add">
+    <a class="btn-add" href="~/ViewModelReserva/CadastrarReserva">
         <div class="btn-add__linha"></div>
-    </div>
+    </a>
 </section>
 
 <script>
     const expandirCard = document.querySelector('.btn-add')
-    let card_adicionar_reserva = document.querySelector(`.reserva-section .container .lateral .nova-reserva`)
-    let card_detalhes_dia = document.querySelector(`.reserva-section .container .lateral .detalhes-dia`)
 
     expandirCard.addEventListener(`click`, () => {
         expandirCard.classList.toggle('btn-add-aberto');
-        card_adicionar_reserva.classList.toggle(`aberto`)
-        card_detalhes_dia.classList.toggle(`fechado`)
     })
 </script>
 
@@ -112,4 +107,18 @@
             closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btn-add").click(function () {
+            var id = $(this).data('value');
+            $("#conteudoDeletar").load("/ViewModelReserva/CadastrarReserva",
+                function () {
+
+                    $("#myModal").modal("show");
+                }
+            )
+        });
+    });
 </script>

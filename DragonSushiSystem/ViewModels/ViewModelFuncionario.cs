@@ -28,8 +28,6 @@ namespace DragonSushiSystem.ViewModels
             Conexao conexao = new Conexao();
             string insertQuery = "CALL spInsertFuncionario(@BairroNome,@CidadeNome,@EstadoUF,@Cep,@Logradouro,@NumeroEndereco,@ComplementoEndereco,@FuncionarioFotoPerfil,@FuncionarioTelefone,@FuncionarioCPF,@FuncionarioNome,@CargoNome,@FuncionarioSenha)";
 
-
-
             MySqlCommand command = new MySqlCommand(insertQuery, conexao.ConectarBD());
             command.Parameters.Add("@BairroNome", MySqlDbType.VarChar).Value = vmFuncionario.Bairro.BairroNome;
             command.Parameters.Add("@CidadeNome", MySqlDbType.VarChar).Value = vmFuncionario.Cidade.CidadeNome;
@@ -96,16 +94,14 @@ namespace DragonSushiSystem.ViewModels
 
             command.ExecuteNonQuery();
             conexao.DesconectarBD();
-
         }
 
-        public void deletarFuncionario(ViewModelFuncionario vmFuncionario)
+        public void deletarFuncionario(int id)
         {
             Conexao conexao = new Conexao();
-            string deleteQuery = "CALL spDeleteFuncionario(@FuncionarioID);";
+            string deleteQuery = String.Format("CALL spDeleteFuncionario({0});", id);
 
             MySqlCommand command = new MySqlCommand(deleteQuery, conexao.ConectarBD());
-            command.Parameters.Add("@FuncionarioID", MySqlDbType.Int32).Value = vmFuncionario.Funcionario.FuncionarioID;
 
             try
             {

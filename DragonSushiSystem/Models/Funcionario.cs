@@ -1,7 +1,9 @@
 ﻿using DragonSushiSystem.Banco;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace DragonSushiSystem.Models
 {
@@ -23,6 +25,7 @@ namespace DragonSushiSystem.Models
         public string FuncionarioCPF { get; set; }
 
         [Display(Name = "Número")]
+        [Range(1, int.MaxValue, ErrorMessage = "Insira um número de endereço válido.")]
         [Required(ErrorMessage = "O número de endereço é obrigatório.")]
         public int FuncionarioNumeroEndereco { get; set; }
 
@@ -43,10 +46,6 @@ namespace DragonSushiSystem.Models
         [Display(Name = "CEP")]
         public string FK_Cep { get; set; }
 
-        public string NovaSenha { get; set; }
-
-        public string ConfirmacaoNovaSenha { get; set; }
-
         public Funcionario TestarUsuario(Funcionario funcionario)
         {
             Conexao conexao = new Conexao();
@@ -62,11 +61,9 @@ namespace DragonSushiSystem.Models
             {
                 while (dados.Read())
                 {
-                    Funcionario dto = new Funcionario();
-                    {
-                        dto.FuncionarioCPF = Conexao.ConverteString(dados["FuncionarioCPF"]);
-                        dto.FuncionarioSenha = Conexao.ConverteString(dados["FuncionarioSenha"]);
-                    }
+                    funcionario.FuncionarioCPF = Conexao.ConverteString(dados["FuncionarioCPF"]);
+                    funcionario.FuncionarioSenha = Conexao.ConverteString(dados["FuncionarioSenha"]);
+                    funcionario.FuncionarioID = Conexao.ConverteInt32(dados["FuncionarioID"]);
                 }
             }
             else
@@ -77,38 +74,54 @@ namespace DragonSushiSystem.Models
             return funcionario;
         }
 
-        public Funcionario MudarSenha(Funcionario funcionario)
+        public Funcionario mudarSenha(Funcionario funcionario, String novaSenha)
         {
             Conexao conexao = new Conexao();
 
-            MySqlCommand verificacaoQuery = new MySqlCommand("SELECT * FROM tbFuncionario WHERE FuncionarioCPF = @CPF AND FuncionarioSenha = @Senha", conexao.ConectarBD());       
-            MySqlDataReader dados = verificacaoQuery.ExecuteReader();
+            MySqlCommand updateQuery = new MySqlCommand("UPDATE tbFuncionario SET FuncionarioSenha = @NovaSenha WHERE FuncionarioID = @ID", conexao.ConectarBD());
+            updateQuery.Parameters.Add("@ID", MySqlDbType.VarChar).Value = funcionario.FuncionarioID;
+            updateQuery.Parameters.Add("@NovaSenha", MySqlDbType.VarChar).Value = novaSenha;
+
+            updateQuery.ExecuteNonQuery();
+            conexao.DesconectarBD();
+
+            return funcionario;
+        }
+
+
+        public Funcionario listarFuncionarioPorID(int id)
+        {
+            Conexao conexao = new Conexao();
+            var selectQuery = String.Format("SELECT * FROM vwExibirFuncionarios WHERE FuncionarioID = {0}", id);
+            MySqlCommand comando = new MySqlCommand(selectQuery, conexao.ConectarBD());
+            var dados = comando.ExecuteReader();
+            return dadosReaderParaList(dados).FirstOrDefault();
+        }
+
+        public List<Funcionario> dadosReaderParaList(MySqlDataReader dados)
+        {
+            var listaFuncionarios = new List<Funcionario>();
 
             if (dados.HasRows)
             {
                 while (dados.Read())
                 {
-                    Funcionario dto = new Funcionario();
+                    var funcionario = new Funcionario()
                     {
-                        dto.FuncionarioCPF = Conexao.ConverteString(dados["FuncionarioCPF"]);
-                        dto.FuncionarioSenha = Conexao.ConverteString(dados["FuncionarioSenha"]);
-                    }
+                            FuncionarioID = ushort.Parse(dados["FuncionarioID"].ToString()),
+                            FuncionarioNome = dados["FuncionarioNome"].ToString(),
+                            FuncionarioSenha = dados["FuncionarioSenha"].ToString(),
+                            FuncionarioCPF = dados["FuncionarioCPF"].ToString(),
+                            FuncionarioNumeroEndereco = ushort.Parse(dados["FuncionarioNumeroEndereco"].ToString()),
+                            FuncionarioComplemento = dados["FuncionarioComplemento"].ToString(),
+                            FuncionarioFotoPerfil = Convert.FromBase64String(dados["FuncionarioFotoPerfil"].ToString()),
+                            FuncionarioTelefone = dados["FuncionarioTelefone"].ToString()
+                    };
+                    listaFuncionarios.Add(funcionario);
                 }
             }
-            else
-            {
-                funcionario.FuncionarioCPF = null;
-                funcionario.FuncionarioSenha = null;
-            }
-
-            if(NovaSenha == ConfirmacaoNovaSenha)
-            {
-                MySqlCommand updateQuery = new MySqlCommand("UPDATE FROM tbFuncionario SET FuncionarioSenha = @NovaSenha WHERE FuncionarioCPF = @CPF AND FuncionarioSenha = @Senha");
-                updateQuery.Parameters.Add("@CPF", MySqlDbType.VarChar).Value = funcionario.FuncionarioCPF;
-                updateQuery.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = funcionario.FuncionarioSenha;
-                updateQuery.Parameters.Add("NovaSenha", MySqlDbType.VarChar).Value = funcionario.NovaSenha;
-            }       
-            return funcionario;
+            dados.Close();
+            return listaFuncionarios;
         }
     }
 }

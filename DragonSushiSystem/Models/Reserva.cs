@@ -33,7 +33,7 @@ namespace DragonSushiSystem.Models
         {
             Conexao conexao = new Conexao();
             
-            string selectQuery = String.Format("CALL spReservaData('{0}')", data);
+            string selectQuery = String.Format("SELECT * FROM vwExibirReserva WHERE DataReserva = '{0}'", data);
             MySqlCommand command = new MySqlCommand(selectQuery, conexao.ConectarBD());
             var dados = command.ExecuteReader();
 
@@ -63,16 +63,18 @@ namespace DragonSushiSystem.Models
             return listaReservas;
         }
 
-        //public void CadastrarCliente(Reserva reserva)
-        //{
-        //    MySqlCommand cmd = new MySqlCommand("CALL spInsertReserva(@Nome,@MesaID,@NumeroPessoas,@DataReserva,@Periodo)", conexao.ConectarBD());
-        //    cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = reserva.ReservaCliente.ClienteNome;
-        //    cmd.Parameters.Add("@MesaID", MySqlDbType.VarChar).Value = reserva.ReservaMesa;
-        //    cmd.Parameters.Add("@NumeroPessoas", MySqlDbType.VarChar).Value = reserva.ReservaNumeroPessoas;
-        //    cmd.Parameters.Add("@DataReserva", MySqlDbType.DateTime).Value = data_reserva;
-        //    cmd.Parameters.Add("@Periodo", MySqlDbType.VarChar).Value = reserva.ReservaPeriodo;
-        //    cmd.ExecuteNonQuery();
-        //    conexao.DesconectarBD();
-        //}
+        public void cadastrarReserva(Reserva reserva)
+        {
+            Conexao conexao = new Conexao();
+
+            MySqlCommand cmd = new MySqlCommand("CALL spInsertReserva(@ClienteID,@MesaID,@NumeroPessoas,@DataReserva,@Periodo)", conexao.ConectarBD());
+            cmd.Parameters.Add("@ClienteID", MySqlDbType.VarChar).Value = reserva.FK_ClienteID;
+            cmd.Parameters.Add("@MesaID", MySqlDbType.VarChar).Value = reserva.FK_MesaID;
+            cmd.Parameters.Add("@NumeroPessoas", MySqlDbType.VarChar).Value = reserva.ReservaNumeroPessoas;
+            cmd.Parameters.Add("@DataReserva", MySqlDbType.DateTime).Value = reserva.ReservaData;
+            cmd.Parameters.Add("@Periodo", MySqlDbType.VarChar).Value = reserva.ReservaPeriodo;
+            cmd.ExecuteNonQuery();
+            conexao.DesconectarBD();
+        }
     }
 }

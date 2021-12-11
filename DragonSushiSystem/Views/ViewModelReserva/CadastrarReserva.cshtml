@@ -1,0 +1,41 @@
+﻿@model DragonSushiSystem.ViewModels.ViewModelReserva
+
+@{
+    ViewBag.Title = "Cadastrar reserva";
+}
+
+<div class="nova-reserva" style="margin-left:100px">
+    <div class="container" id="reserva">
+        <div class="card-cadastro reserva">
+            <span class="txtCadastro">Cadastrar produto</span>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="radiobox-periodos">
+                    @Html.RadioButtonFor(model => model.Reserva.ReservaPeriodo, "Almoço")
+                    <p>Almoço</p>
+                    @Html.RadioButtonFor(model => model.Reserva.ReservaPeriodo, "Jantar")
+                    <p>Jantar</p>
+                </div>
+                <select name="Reserva.FK_ClienteID" id="">
+                    <option disabled selected>Telefone do cliente</option>
+                    @for (int i = 0; i < Model.listaClientes.Count; i++)
+                    {
+                        <option value="@Model.listaClientes[i].ClienteID">@Model.listaClientes[i].ClienteTelefone</option>
+                    }
+                </select>
+                @Html.EditorFor(model => model.Reserva.FK_MesaID)
+
+                @Html.EditorFor(model => model.Reserva.ReservaData)
+
+                @Html.EditorFor(model => model.Reserva.ReservaNumeroPessoas)
+                <div class="buttons">
+                    <button type="submit" class="btnVerde">Salvar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

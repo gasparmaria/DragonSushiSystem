@@ -9,7 +9,7 @@ namespace DragonSushiSystem.Models
 {
     public class Mesa
     {
-        public int MesaID { get; set; }
+        public int? MesaID { get; set; }
 
         [Required(ErrorMessage = "O status é obrigatório.")]
         public bool MesaStatus { get; set; }
